@@ -7,34 +7,44 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+  private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    this.checkLoginStatus(); // Check login on app load
+    this.checkLoginStatus();
   }
 
-  /** Check backend session status */
+  /** ✅ Check if token/user info exists in localStorage */
+  private hasToken(): boolean {
+    return !!localStorage.getItem('loggedInUser');
+  }
+
   checkLoginStatus(): void {
     this.http.get('/api/method/frappe.auth.get_logged_user', { withCredentials: true })
       .pipe(
         map(() => true),
         catchError(() => of(false))
       )
-      .subscribe(isLogged => this.isLoggedInSubject.next(isLogged));
+      .subscribe(isLogged => {
+        this.isLoggedInSubject.next(isLogged);
+        if (isLogged) {
+          localStorage.setItem('loggedInUser', 'true');
+        } else {
+          localStorage.removeItem('loggedInUser');
+        }
+      });
   }
 
-  /** Manually mark as logged in (after successful login) */
   setLogin(): void {
     this.isLoggedInSubject.next(true);
+    localStorage.setItem('loggedInUser', 'true');
   }
 
-  /** Manually mark as logged out */
   setLogout(): void {
     this.isLoggedInSubject.next(false);
+    localStorage.removeItem('loggedInUser');
   }
 
-  /** Observable to get current status */
   getStatus(): Observable<boolean> {
     return this.isLoggedIn$;
   }

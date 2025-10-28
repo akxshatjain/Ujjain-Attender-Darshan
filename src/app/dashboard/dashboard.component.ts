@@ -45,7 +45,7 @@ interface DevoteeDetails {
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  user = { name: 'Suresh Kumar', id: 101 };
+user = { name: '', id: '' };
 
   // Svelte-style variables
   marked_exit_schedules = 0;
@@ -64,6 +64,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadUserProfile();  // 👈 add this
     this.loadAppointments();
     this.loadStats();
   }
@@ -211,6 +212,26 @@ markExit(appointmentId: string) {
     
     this.attenderService.logoutUser();
   }
+
+async loadUserProfile() {
+  try {
+    const profile = await this.attenderService.getSelfProfile().toPromise();
+    console.log('Loaded profile:', profile); // ✅ Debug line
+
+    if (profile) {
+      this.user = {
+        name: profile.attender_name || 'Unknown User',
+        id: profile.name || 'N/A'
+      };
+    } else {
+      console.warn('No profile data found.');
+    }
+  } catch (err) {
+    console.error('Error loading user profile:', err);
+  }
+}
+
+
 }
 
 
