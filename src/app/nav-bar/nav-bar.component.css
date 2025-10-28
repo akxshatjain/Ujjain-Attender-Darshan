@@ -1,83 +1,65 @@
-/* nav-bar.component.css */
-
-/* Navbar background and layout */
-
+/* Smooth transitions */
 nav {
-  background-color: #e3f2fd; /* soft sky blue */
-  border-bottom: 1px solid #d0e3f0;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease;
 }
 
-/* Container */
-nav .max-w-7xl {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 64px;
+/* Hover & active link styles */
+a {
+  transition: color 0.2s ease-in-out;
+}
+a:hover {
+  color: #2563eb; /* Tailwind blue-600 */
+}
+a.router-link-active {
+  font-weight: 600;
+  color: #2563eb;
 }
 
-/* Brand name */
-nav a.text-xl {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #0d1b2a;
+/* Buttons */
+button {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+button:hover {
+  transform: translateY(-1px);
 }
 
-/* Navigation links */
-nav ul li a {
-  color: #0d1b2a;
-  font-weight: 500;
+/* Mobile animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+div[ngIf] {
+  animation: fadeIn 0.2s ease-in-out;
+}
+nav {
+  transition: background-color 0.3s ease;
+}
+
+a {
   transition: color 0.2s ease-in-out;
 }
 
-nav ul li a:hover,
-nav ul li a.active,
-nav ul li a.router-link-active {
-  color: #007bff;
+a.router-link-active {
+  color: #2563eb; /* blue-600 */
+  font-weight: 600;
 }
 
-/* Buttons (Back, Next) */
 button {
-  font-weight: 500;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 button:hover {
   transform: translateY(-1px);
 }
 
-/* Logout button */
-button.bg-slate-400 {
-  background-color: #f97316; /* orange */
-  border: 1px solid #f97316;
-  font-weight: 500;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-button.bg-slate-400:hover {
-  background-color: #ea580c;
+div[ngIf] {
+  animation: fadeIn 0.2s ease-in-out;
 }
 
-/* Mobile menu */
-.md\\:hidden button svg {
-  stroke: #0d1b2a;
-}
-
-/* Fix for text alignment */
-ul {
-  align-items: center;
-}
-
-/* Ensure clickable area and spacing */
-ul li a,
-button {
-  cursor: pointer;
-}
-/* Add spacing between logo and nav links */
-nav ul {
-  margin-left: 4rem; /* adjust this for more/less spacing */
-}
-
-/* Slightly more refined alignment */
-nav .flex.items-center.space-x-4 {
-  gap: 2rem; /* adds gap between logo and Back/Next buttons if visible */
-}

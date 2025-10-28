@@ -1,42 +1,67 @@
-<nav class="bg-sky-100 dark:bg-primary-700 w-full shadow-sm border-b border-slate-200 relative z-50">
+<nav class="bg-sky-100 w-full shadow-sm border-b border-slate-200 relative z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       
       <!-- Brand -->
       <div class="flex items-center space-x-4">
-        <a routerLink="/" class="text-xl font-bold text-black dark:text-white whitespace-nowrap">
+        <a routerLink="/" class="text-xl font-bold text-slate-800 whitespace-nowrap">
           Darshan Mahakaal
         </a>
 
-        <!-- Back / Next buttons (only if logged in) -->
+        <!-- Back / Next buttons -->
         <div *ngIf="userLoggedIn$ | async" class="flex space-x-3 ml-4">
-          <!-- <button
+          <button
             (click)="goBack()"
-            class="px-3 py-1 text-sm font-medium text-blue-600 border border-blue-600 rounded-full hover:bg-blue-100 hover:text-blue-800"
+            class="px-3 py-1 text-sm font-medium text-blue-600 border border-blue-600 rounded-full hover:bg-blue-100 hover:text-blue-800 transition"
           >
             Back
           </button>
           <button
             (click)="goForward()"
-            class="px-3 py-1 text-sm font-medium text-blue-600 border border-blue-600 rounded-full hover:bg-blue-100 hover:text-blue-800"
+            class="px-3 py-1 text-sm font-medium text-blue-600 border border-blue-600 rounded-full hover:bg-blue-100 hover:text-blue-800 transition"
           >
             Next
-          </button> -->
+          </button>
         </div>
       </div>
 
       <!-- Desktop nav links -->
       <ul class="hidden md:flex items-center space-x-6 text-sm font-medium">
-<li *ngIf="!(userLoggedIn$ | async)"><a routerLink="/" routerLinkActive="text-blue-600 font-semibold" class="text-gray-800 dark:text-white hover:text-blue-600">Home</a></li>
+        <li *ngIf="!(userLoggedIn$ | async)">
+          <a routerLink="/" routerLinkActive="text-blue-600 font-semibold"
+            class="text-slate-800 hover:text-blue-600 transition">
+            Home
+          </a>
+        </li>
 
         <ng-container *ngIf="userLoggedIn$ | async; else loggedOutLinks">
-          <li><a routerLink="/dashboard" routerLinkActive="text-blue-600 font-semibold" class="text-gray-800 dark:text-white hover:text-blue-600">Dashboard</a></li>
-          <li><a routerLink="/profile" routerLinkActive="text-blue-600 font-semibold" class="text-gray-800 dark:text-white hover:text-blue-600">Profile</a></li>
+          <li>
+            <a routerLink="/dashboard" routerLinkActive="text-blue-600 font-semibold"
+              class="text-slate-800 hover:text-blue-600 transition">
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a routerLink="/profile" routerLinkActive="text-blue-600 font-semibold"
+              class="text-slate-800 hover:text-blue-600 transition">
+              Profile
+            </a>
+          </li>
         </ng-container>
 
         <ng-template #loggedOutLinks>
-          <li><a routerLink="/registration" routerLinkActive="text-blue-600 font-semibold" class="text-gray-800 dark:text-white hover:text-blue-600">Registration</a></li>
-          <li><a routerLink="/login" routerLinkActive="text-blue-600 font-semibold" class="text-gray-800 dark:text-white hover:text-blue-600">Login</a></li>
+          <li>
+            <a routerLink="/registration" routerLinkActive="text-blue-600 font-semibold"
+              class="text-slate-800 hover:text-blue-600 transition">
+              Registration
+            </a>
+          </li>
+          <li>
+            <a routerLink="/login" routerLinkActive="text-blue-600 font-semibold"
+              class="text-slate-800 hover:text-blue-600 transition">
+              Login
+            </a>
+          </li>
         </ng-template>
       </ul>
 
@@ -44,14 +69,15 @@
       <div class="hidden md:flex">
         <button *ngIf="userLoggedIn$ | async"
           (click)="logout()"
-          class="ml-3 px-4 py-1 bg-slate-400 text-white rounded-full hover:bg-slate-500">
+    class="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-4 py-1.5 rounded-full transition-all duration-200 text-sm font-medium">
           Logout
         </button>
       </div>
 
       <!-- Mobile hamburger -->
       <div class="md:hidden">
-        <button (click)="menuOpen = !menuOpen" class="p-2 text-gray-700 rounded-md hover:bg-gray-200 dark:text-white dark:hover:bg-gray-600">
+        <button (click)="menuOpen = !menuOpen"
+          class="p-2 text-slate-700 rounded-md hover:bg-slate-200 transition">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
@@ -61,19 +87,19 @@
   </div>
 
   <!-- Mobile Menu -->
-  <div *ngIf="menuOpen" class="md:hidden bg-sky-50 dark:bg-primary-800 shadow-inner">
+  <div *ngIf="menuOpen" class="md:hidden bg-sky-50 shadow-inner">
     <ul class="flex flex-col items-start p-4 space-y-3 text-base font-medium">
-      <li><a routerLink="/" (click)="menuOpen=false" class="w-full block text-gray-800 dark:text-white hover:text-blue-600">Home</a></li>
+      <li><a routerLink="/" (click)="menuOpen=false" class="w-full block text-slate-800 hover:text-blue-600">Home</a></li>
 
       <ng-container *ngIf="userLoggedIn$ | async; else mobileLoggedOut">
-        <li><a routerLink="/dashboard" (click)="menuOpen=false" class="w-full block text-gray-800 dark:text-white hover:text-blue-600">Dashboard</a></li>
-        <li><a routerLink="/dashboard/viewprofile" (click)="menuOpen=false" class="w-full block text-gray-800 dark:text-white hover:text-blue-600">Profile</a></li>
+        <li><a routerLink="/dashboard" (click)="menuOpen=false" class="w-full block text-slate-800 hover:text-blue-600">Dashboard</a></li>
+        <li><a routerLink="/profile" (click)="menuOpen=false" class="w-full block text-slate-800 hover:text-blue-600">Profile</a></li>
         <li><button (click)="logout(); menuOpen=false" class="w-full text-left text-orange-600">Logout</button></li>
       </ng-container>
 
       <ng-template #mobileLoggedOut>
-        <li><a routerLink="/registration" (click)="menuOpen=false" class="w-full block text-gray-800 dark:text-white hover:text-blue-600">Registration</a></li>
-        <li><a routerLink="/login" (click)="menuOpen=false" class="w-full block text-gray-800 dark:text-white hover:text-blue-600">Login</a></li>
+        <li><a routerLink="/registration" (click)="menuOpen=false" class="w-full block text-slate-800 hover:text-blue-600">Registration</a></li>
+        <li><a routerLink="/login" (click)="menuOpen=false" class="w-full block text-slate-800 hover:text-blue-600">Login</a></li>
       </ng-template>
     </ul>
   </div>

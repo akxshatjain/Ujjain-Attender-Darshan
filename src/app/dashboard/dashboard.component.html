@@ -88,23 +88,23 @@
         class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium"
         [ngClass]="{
           'bg-green-100 text-green-700':
-            (d.mark_exit + '') === '0' || (d.mark_exit + '')?.toLowerCase() === 'no',
+            (d.mark_exit + '') === '0' || (d.mark_exit + '').toLowerCase() === 'no',
           'bg-red-100 text-red-700':
-            (d.mark_exit + '') === '1' || (d.mark_exit + '')?.toLowerCase() === 'yes'
+            (d.mark_exit + '') === '1' || (d.mark_exit + '').toLowerCase() === 'yes'
         }"
       >
         <span
           class="w-2 h-2 rounded-full"
           [ngClass]="{
             'bg-green-500':
-              (d.mark_exit + '') === '0' || (d.mark_exit + '')?.toLowerCase() === 'no',
+              (d.mark_exit + '') === '0' || (d.mark_exit + '').toLowerCase() === 'no',
             'bg-red-500':
-              (d.mark_exit + '') === '1' || (d.mark_exit + '')?.toLowerCase() === 'yes'
+              (d.mark_exit + '') === '1' || (d.mark_exit + '').toLowerCase() === 'yes'
           }"
         ></span>
 
         {{
-          (d.mark_exit + '') === '1' || (d.mark_exit + '')?.toLowerCase() === 'yes'
+          (d.mark_exit + '') === '1' || (d.mark_exit + '').toLowerCase() === 'yes'
             ? 'Inactive'
             : 'Active'
         }}
