@@ -1,0 +1,17 @@
+/* Full page with bluish background */
+.app-container {
+  min-height: 100vh;
+  background-color: #d9e0e3; /* light bluish background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* “महाकाल” text styling */
+.mahakal-text {
+  font-size: 70px;
+  font-weight: 500;
+  color: #7a5c2e;/* bluish text color */
+  margin: 360px 0;
+}

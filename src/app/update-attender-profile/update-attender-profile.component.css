@@ -1,0 +1,27 @@
+.input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  margin-top: 0.25rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 1px #6366f1;
+}
+aside {
+  min-width: 220px;
+  background-color: #fff;
+}
+
+aside .bg-blue-500 {
+  transition: all 0.3s ease;
+}
+
+aside .bg-blue-500:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+

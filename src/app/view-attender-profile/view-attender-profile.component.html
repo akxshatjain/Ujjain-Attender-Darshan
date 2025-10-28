@@ -1,0 +1,100 @@
+<div class="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="animate-pulse text-gray-600 text-lg">
+    Loading profile...
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="!loading && error"
+       class="text-red-600 bg-red-100 border border-red-300 px-4 py-3 rounded-lg shadow-sm">
+    {{ error }}
+  </div>
+
+  <!-- Profile Card -->
+  <div *ngIf="!loading && !error && profile"
+       class="card w-full max-w-lg p-6 bg-white shadow-xl rounded-3xl transition-transform transform hover:scale-[1.02] hover:shadow-2xl">
+    <div class="flex flex-col items-center space-y-4">
+      <img
+        [src]="'https://ui-avatars.com/api/?name=' + (profile.attender_name || profile.owner || 'User') + '&background=random'"
+        alt="Avatar"
+        class="w-24 h-24 rounded-full shadow-md"
+      />
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-gray-800 mb-1">
+          {{ profile.attender_name || profile.owner || profile.name }}
+        </h2>
+        <p class="text-gray-500 text-sm">
+          {{ profile.doctype || 'Darshan Devoteee Profile' }}
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 space-y-3 text-gray-700">
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-medium">Phone</span>
+        <span>{{ profile.phone || '—' }}</span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-medium">Email</span>
+        <span class="text-sm text-gray-600">{{ profile.email || profile.frappe_profile || '—' }}</span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-medium">Gender</span>
+        <span class="capitalize">{{ profile.gender || '—' }}</span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-medium">Date of Birth</span>
+        <span>{{ profile.dob || '—' }}</span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-medium">E-KYC</span>
+        <span
+          [ngClass]="truthyInt(profile.is_ekyc_complete) ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'"
+          class="px-2 py-1 rounded-full text-xs font-semibold">
+          {{ truthyInt(profile.is_ekyc_complete) ? 'Completed' : 'Pending' }}
+        </span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-medium">Companion</span>
+        <span
+          [ngClass]="truthyInt(profile.is_devoteee_companion) ? 'bg-blue-100 text-blue-700' : 'bg-gray-200 text-gray-700'"
+          class="px-2 py-1 rounded-full text-xs font-semibold">
+          {{ truthyInt(profile.is_devoteee_companion) ? 'Yes' : 'No' }}
+        </span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-medium">Aadhar</span>
+        <span class="text-sm text-gray-600">{{ profile.aadhar || '—' }}</span>
+      </div>
+
+      <div class="flex justify-between border-b pb-2">
+        <span class="font-medium">Address</span>
+        <span class="text-sm text-gray-600">{{ profile.address || '—' }}</span>
+      </div>
+
+      <div class="flex justify-between">
+        <span class="font-medium">Created On</span>
+        <span>{{ profile.creation }}</span>
+      </div>
+    </div>
+
+    <div class="mt-8 flex justify-center space-x-4">
+      <button
+        class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium rounded-full px-5 py-2 transition"
+        (click)="updateProfile()">
+        Update Profile
+      </button>
+    </div>
+  </div>
+
+  <!-- No Profile Found -->
+  <p *ngIf="!loading && !error && !profile" class="text-gray-600">
+    No profile found.
+  </p>
+</div>

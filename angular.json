@@ -55,18 +55,22 @@
           },
           "defaultConfiguration": "production"
         },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "attender-darshan-booking:build:production"
-            },
-            "development": {
-              "buildTarget": "attender-darshan-booking:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
+"serve": {
+  "builder": "@angular-devkit/build-angular:dev-server",
+  "options": {
+    "buildTarget": "attender-darshan-booking:build:development",
+    "proxyConfig": "proxy.conf.json"
+  },
+  "configurations": {
+    "production": {
+      "buildTarget": "attender-darshan-booking:build:production"
+    },
+    "development": {
+      "buildTarget": "attender-darshan-booking:build:development"
+    }
+  },
+  "defaultConfiguration": "development"
+},
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
         },
@@ -92,5 +96,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
