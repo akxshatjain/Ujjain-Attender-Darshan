@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; // <-- ADD THIS
+import { AuthService } from '../services/auth.service';
 
 @Component({
   imports:[CommonModule,ReactiveFormsModule,HttpClientModule,RouterModule ],
@@ -19,14 +20,20 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loading = true;
 
-  constructor(
-    private fb: FormBuilder,
-    private attenderService: AttenderService,
-    private router: Router,
-    private toastr: ToastrService
-  ) {}
+constructor(
+  private fb: FormBuilder,
+  private attenderService: AttenderService,
+  private router: Router,
+  private toastr: ToastrService,
+  private auth: AuthService      // ✅ REQUIRED for setLogin()
+) {}
+
 
   ngOnInit(): void {
+localStorage.removeItem('loggedInUser');
+localStorage.removeItem('user_phone_number');
+
+
 this.loginForm = this.fb.group({
   phone: ['555', Validators.required],
   password: ['Mpsedc123', Validators.required]
@@ -41,29 +48,36 @@ this.loginForm = this.fb.group({
     }, 500);
   }
 
-  onSubmit(): void {
-    if (this.loginForm.invalid) return;
+onSubmit(): void {
+  if (this.loginForm.invalid) return;
 
-    this.loading = true;
-    const { phone, password } = this.loginForm.value;
+  this.loading = true;
+  const { phone } = this.loginForm.value;
 
-    this.attenderService.loginVerify(phone, password).subscribe({
-      next: (res) => {
-        this.loading = false;
-        if (res?.full_name) {
-          this.toastr.success('Login successful');
-          localStorage.setItem('user_logged_in', 'true');
-          localStorage.setItem('user_phone_number', phone);
-          this.router.navigate(['dashboard']);
-        } else {
-          this.toastr.error(res?.message || 'Login failed');
-        }
-      },
-      error: (err) => {
-        console.error(err);
-        this.toastr.error('Something went wrong');
-        this.loading = false;
-      }
-    });
-  }
+  this.attenderService.loginVerify(phone).subscribe({
+    next: (res) => {
+      this.loading = false;
+
+if (res?.message?.token) {
+  this.toastr.success("Login successful");
+
+  localStorage.setItem("auth_token", res.message.token);
+  localStorage.setItem("loggedInUser", "true");
+  this.auth.setLogin();
+  localStorage.setItem("user_phone_number", phone);
+
+  this.router.navigate(["/dashboard"]);
+} else {
+  this.toastr.error("Login failed");
+}
+
+    },
+    error: () => {
+      this.loading = false;
+      this.toastr.error("Server error. Try again.");
+    }
+  });
+}
+
+
 }

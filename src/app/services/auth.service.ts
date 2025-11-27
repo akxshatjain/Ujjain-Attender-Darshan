@@ -15,9 +15,10 @@ export class AuthService {
   }
 
   /** ✅ Check if token/user info exists in localStorage */
-  private hasToken(): boolean {
-    return !!localStorage.getItem('loggedInUser');
-  }
+private hasToken(): boolean {
+  return !!localStorage.getItem('loggedInUser');
+}
+
 
   checkLoginStatus(): void {
     this.http.get('/api/method/frappe.auth.get_logged_user', { withCredentials: true })

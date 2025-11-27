@@ -196,7 +196,7 @@ markExit(appointmentId: string) {
         // this.loadAppointments();
 
         // ✅ Show toastr instead of alert
-        this.toastr.success('Exit marked successfully!', 'Success ✅');
+        this.toastr.success('Exit marked successfully!', '');
       } else {
         this.toastr.warning('Could not mark exit. Please try again.', 'Warning ⚠️');
       }

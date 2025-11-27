@@ -21,6 +21,7 @@ export class AuthGuard implements CanActivate {
   }
 }
 
+
 /** ✅ Add this guard to restrict access to logged-out-only routes */
 @Injectable({
   providedIn: 'root'

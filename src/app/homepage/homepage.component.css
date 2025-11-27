@@ -3,15 +3,22 @@
   min-height: 100vh;
   background-color: #d9e0e3; /* light bluish background */
   display: flex;
+  justify-content: center;   /* center horizontally */
+  align-items: flex-start;   /* start from top */
   flex-direction: column;
-  align-items: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
 }
 
 /* “महाकाल” text styling */
 .mahakal-text {
   font-size: 70px;
   font-weight: 500;
-  color: #7a5c2e;/* bluish text color */
-  margin: 360px 0;
+  color: #7a5c2e;
+  position: absolute;
+  top: 40%;  /* slightly above center */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  margin: 0;
 }

@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { AttenderService } from '../services/attender.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   standalone: true,
@@ -19,7 +21,9 @@ export class NavBarComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private attenderService: AttenderService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
+
   ) {}
 
   ngOnInit(): void {
@@ -37,5 +41,7 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this.attenderService.logoutUser();
+    this.toastr.success("Logout successful");
+
   }
 }
