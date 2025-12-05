@@ -12,7 +12,7 @@ import { AuthService } from './auth.service';
 export class AttenderService {
 
   //  Change IP here only
-  BASE_IP = "http://10.120.9.42:8890/";
+  BASE_IP = "http://10.120.10.245:8890/";
   
 
   constructor(
@@ -121,5 +121,21 @@ logoutUser(): void {
       })
     );
   }
+
+  createAttender(phone: number): Observable<any> {
+  const url = `${this.BASE_IP}/api/method/mahakaal.darshan_booking.doctype.darshan_attender_profile.darshan_attender_profile.create_attender`;
+
+  return this.http.post(
+    url,
+    { phone: phone },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem("auth_token") || ""
+      }
+    }
+  );
+}
+
 
 }
