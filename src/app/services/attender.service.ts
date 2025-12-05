@@ -11,8 +11,8 @@ import { AuthService } from './auth.service';
 })
 export class AttenderService {
 
-  // ✅ Change IP here only
-  BASE_IP = "https://test1.inxeoz.com/";
+  //  Change IP here only
+  BASE_IP = "http://10.120.9.42:8890/";
   
 
   constructor(
@@ -38,7 +38,7 @@ export class AttenderService {
     );
   }
 
-  // ✅ Helper for token header
+  //  token header
   private authHeaders(): HttpHeaders {
     return new HttpHeaders({
       "Content-Type": "application/json",
