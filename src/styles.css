@@ -2,13 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 @import 'flowbite';
 
+* {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', 'Inter', sans-serif;
   background-color: #f7fafc;
 }
+
+/* Glassmorphism utility classes */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #C74B2A 0%, #E69045 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F9F7F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #C74B2A 0%, #E69045 100%);
+  border-radius: 5px;
+  border: 2px solid #F9F7F2;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9E381A;
+}
+
 
 #toast-container.toast-top-right {
   position: fixed !important;
@@ -23,7 +70,7 @@ body {
 }
 
 /* ✅ Toast Box (auto width, fixed height) */
-#toast-container > div {
+#toast-container>div {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -33,7 +80,8 @@ body {
   font-size: 0.9rem !important;
   font-weight: 500 !important;
   white-space: nowrap !important;
-  width: fit-content !important; /* 👈 auto size by text */
+  width: fit-content !important;
+  /* 👈 auto size by text */
   max-width: 90vw !important;
   min-height: 1cm !important;
   color: #fff !important;
@@ -45,17 +93,19 @@ body {
 
 /* ✅ Success Toast (Green) */
 .toast-success {
-  background-color: #22c55e !important; /* Tailwind green-500 */
+  background-color: #22c55e !important;
+  /* Tailwind green-500 */
 }
 
 /* ✅ Error Toast (Red) */
 .toast-error {
-  background-color: #ef4444 !important; /* Tailwind red-500 */
+  background-color: #ef4444 !important;
+  /* Tailwind red-500 */
 }
 
 /* ✅ Progress bar colors */
 /* ✅ Progress bar — fully inside toast (no overflow, clean edges) */
-#toast-container > div .toast-progress {
+#toast-container>div .toast-progress {
   position: absolute !important;
   bottom: 4px !important;
   left: 8px !important;
@@ -63,17 +113,20 @@ body {
   height: 3px !important;
   border-radius: 2px !important;
   opacity: 0.9 !important;
-  transition: width 0.35s linear !important; /* ✅ smooth shrinking */
+  transition: width 0.35s linear !important;
+  /* ✅ smooth shrinking */
 }
 
 
 /* ✅ Matching soft color tones */
-#toast-container > .toast-success .toast-progress {
-  background-color: #86efac !important; /* Lighter green (green-300) */
+#toast-container>.toast-success .toast-progress {
+  background-color: #86efac !important;
+  /* Lighter green (green-300) */
 }
 
-#toast-container > .toast-error .toast-progress {
-  background-color: #fca5a5 !important; /* Lighter red (red-300) */
+#toast-container>.toast-error .toast-progress {
+  background-color: #fca5a5 !important;
+  /* Lighter red (red-300) */
 }
 
 
@@ -100,20 +153,23 @@ body {
   pointer-events: auto;
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
+
 .toast-close-button:hover {
   opacity: 1;
   transform: scale(1.2);
 }
 
 /* ✅ Slide-in Animation (Right → Left) */
-#toast-container.toast-top-right > div {
+#toast-container.toast-top-right>div {
   animation: slideInFromRight 0.35s ease forwards;
 }
+
 @keyframes slideInFromRight {
   from {
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;

@@ -8,12 +8,18 @@ import { UpdateAttenderProfileComponent } from './update-attender-profile/update
 import { RegistrationComponent } from './registration/registration.component';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent, canActivate: [LogoutGuard] },
-  { path: 'homepage', component: HomepageComponent, canActivate: [LogoutGuard] },
-  { path: 'registration', component: RegistrationComponent, canActivate: [LogoutGuard] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ViewAttenderProfileComponent, canActivate: [AuthGuard] },
-  { path: 'updateprofile', component: UpdateAttenderProfileComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  // { path: 'login', component: LoginComponent, canActivate: [LogoutGuard] },
+  { path: 'homepage', component: HomepageComponent},
+  // { path: 'homepage', component: HomepageComponent, canActivate: [LogoutGuard] },
+  { path: 'registration', component: RegistrationComponent},
+  // { path: 'registration', component: RegistrationComponent, canActivate: [LogoutGuard] },
+  { path: 'dashboard', component: DashboardComponent },
+  // { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ViewAttenderProfileComponent },
+  // { path: 'profile', component: ViewAttenderProfileComponent, canActivate: [AuthGuard] },
+  { path: 'updateprofile', component: UpdateAttenderProfileComponent },
+  // { path: 'updateprofile', component: UpdateAttenderProfileComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
   { path: '**', redirectTo: 'homepage' },
 ];

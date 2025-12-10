@@ -1,182 +1,233 @@
-<div class="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-  <div *ngIf="submitted; else profileForm">
-    <div class="bg-white shadow-lg rounded-2xl p-8 max-w-2xl w-full text-center">
-      <img
-        *ngIf="profileData?.avatar"
-        [src]="profileData.avatar"
-        alt="Avatar"
-        class="w-24 h-24 rounded-full mx-auto mb-4"
-      />
-      <h3 class="text-2xl font-semibold">Profile Updated</h3>
-      <p class="text-gray-600 mt-2">
-        Your profile details have been saved successfully.
+<div
+  class="min-h-screen py-10 px-4 flex justify-center items-center bg-gradient-to-br from-mahakal-cream via-orange-50 to-amber-50 relative overflow-hidden">
+
+  <!-- Background Elements -->
+  <div class="absolute inset-0 z-0 opacity-5 pointer-events-none">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-mahakal-orange rounded-full filter blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-mahakal-saffron rounded-full filter blur-3xl"></div>
+  </div>
+
+  <div *ngIf="submitted; else profileForm" class="z-10 w-full max-w-md animate-scale-in">
+    <div class="bg-white shadow-mahakal rounded-3xl p-8 text-center border-t-4 border-mahakal-orange">
+      <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h3 class="text-2xl font-bold font-poppins text-gray-900 mb-2">Profile Updated!</h3>
+      <p class="text-gray-600 mb-8">
+        Your spiritual seva profile details have been successfully saved.
       </p>
-      <button
-        (click)="goToDashboard()"
-        class="mt-6 px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full"
-      >
-        Go to Dashboard
+
+      <button (click)="goToDashboard()"
+        class="w-full py-3 bg-gradient-mahakal text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        Return to Dashboard
       </button>
     </div>
   </div>
 
   <ng-template #profileForm>
-    <div class="bg-white rounded-2xl shadow-lg p-8 w-full max-w-4xl">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Sidebar -->
-<!-- Sidebar -->
-<aside class="flex flex-col items-center text-center p-6 border-r border-gray-100">
-  <div class="relative">
-    <!-- Circle avatar with initials -->
     <div
-      class="w-24 h-24 rounded-full bg-blue-500 flex items-center justify-center text-white text-3xl font-semibold shadow-md"
-    >
-      {{ name ? name.substring(0, 2).toUpperCase() : 'AT' }}
-    </div>
-  </div>
+      class="bg-white/90 backdrop-blur-xl rounded-3xl shadow-mahakal w-full max-w-5xl overflow-hidden border border-white/50 z-10 animate-fade-in">
+      <div class="grid grid-cols-1 md:grid-cols-12">
 
-  <!-- Name and role -->
-  <!-- <h2 class="mt-4 text-lg font-semibold text-gray-800">{{ name || 'attender8000' }}</h2>
-  <p class="text-sm text-gray-500">Darshan Attender Profile</p> -->
+        <!-- Sidebar -->
+        <aside
+          class="md:col-span-4 bg-gradient-to-b from-orange-50 to-white border-r border-orange-100 p-8 flex flex-col items-center text-center relative">
 
-  <div class="mt-6">
-    <h3 class="text-lg font-semibold text-gray-800">Update Your Profile</h3>
-    <p class="mt-1 text-sm text-gray-600 max-w-xs">
-      A few details to complete your approver account.
-    </p>
-    <span
-      class="mt-4 inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium"
-      >Approver</span
-    >
-  </div>
-</aside>
+          <div class="relative mb-6">
+            <div class="absolute inset-0 bg-mahakal-saffron rounded-full blur-md opacity-20 transform translate-y-2">
+            </div>
+            <div class="relative w-32 h-32 rounded-full p-1 bg-white shadow-lg">
+              <img
+                [src]="'https://ui-avatars.com/api/?name=' + (name || 'User') + '&background=random&color=fff&size=128'"
+                alt="Avatar" class="w-full h-full rounded-full object-cover" />
+            </div>
+            <!-- Edit Icon Overlay (Visual only for now) -->
+            <div
+              class="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-md text-mahakal-orange cursor-pointer hover:bg-orange-50 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+          </div>
 
+          <h2 class="text-xl font-bold text-gray-900 font-poppins mb-1">{{ name || 'Attender' }}</h2>
+          <p class="text-mahakal-saffron text-sm font-medium mb-6">Service Account</p>
+
+          <div class="w-full space-y-3">
+            <div class="p-3 bg-white rounded-xl shadow-sm border border-orange-100 flex items-center gap-3 text-left">
+              <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-mahakal-orange">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-gray-500 uppercase">Status</p>
+                <p class="text-sm font-semibold text-green-600">Active</p>
+              </div>
+            </div>
+
+            <div class="p-3 bg-white rounded-xl shadow-sm border border-orange-100 flex items-center gap-3 text-left">
+              <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-gray-500 uppercase">Role</p>
+                <p class="text-sm font-semibold text-gray-800">Darshan Attender</p>
+              </div>
+            </div>
+          </div>
+
+        </aside>
 
         <!-- Form -->
-        <section class="md:col-span-2">
-          <form (ngSubmit)="onSubmit()" #profileForm="ngForm" class="space-y-5">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label for="name" class="block text-gray-700 font-medium"
-                  >Full Name</label
-                >
-                <input
-                  id="name"
-                  type="text"
-                  [(ngModel)]="name"
-                  name="name"
-                  class="input"
-                  placeholder="John Doe"
-                />
+        <section class="md:col-span-8 p-8 md:p-10">
+          <div class="mb-8 border-b border-gray-100 pb-4">
+            <h1 class="text-2xl font-bold text-gray-900 font-poppins mb-1">Update Profile</h1>
+            <p class="text-gray-500">Manage your personal information and preferences.</p>
+          </div>
+
+          <form (ngSubmit)="onSubmit()" #profileForm="ngForm" class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+              <!-- Full Name -->
+              <div class="group">
+                <label for="name"
+                  class="block text-sm font-semibold text-gray-700 mb-2 group-focus-within:text-mahakal-orange transition-colors">
+                  Full Name
+                </label>
+                <div class="relative">
+                  <span
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-mahakal-orange transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </span>
+                  <input id="name" type="text" [(ngModel)]="name" name="name"
+                    class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-mahakal-orange focus:ring-4 focus:ring-mahakal-orange/10 transition-all bg-gray-50 focus:bg-white"
+                    placeholder="Enter your full name" />
+                </div>
               </div>
 
-              <div>
-                <label for="gender" class="block text-gray-700 font-medium"
-                  >Gender</label
-                >
-                <select
-                  id="gender"
-                  [(ngModel)]="gender"
-                  name="gender"
-                  class="input"
-                >
-                  <option value="" disabled>Select Gender</option>
-                  <option value="female">Female</option>
-                  <option value="male">Male</option>
-                  <option value="non-binary">Non-binary</option>
-                  <option value="prefer-not-to-say">Prefer not to say</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label for="dob" class="block text-gray-700 font-medium"
-                  >Date of Birth</label
-                >
-                <input
-                  id="dob"
-                  type="date"
-                  [(ngModel)]="dob"
-                  name="dob"
-                  class="input"
-                />
-              </div>
-
-              <div>
-                <label for="aadhar" class="block text-gray-700 font-medium"
-                  >Aadhar (optional)</label
-                >
-                <input
-                  id="aadhar"
-                  type="text"
-                  [(ngModel)]="aadhar"
-                  name="aadhar"
-                  maxlength="20"
-                  class="input"
-                  placeholder="1234 5678 9012"
-                />
+              <!-- Gender -->
+              <div class="group">
+                <label for="gender"
+                  class="block text-sm font-semibold text-gray-700 mb-2 group-focus-within:text-mahakal-orange transition-colors">
+                  Gender
+                </label>
+                <div class="relative">
+                  <span
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-mahakal-orange transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </span>
+                  <select id="gender" [(ngModel)]="gender" name="gender"
+                    class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-mahakal-orange focus:ring-4 focus:ring-mahakal-orange/10 transition-all bg-gray-50 focus:bg-white appearance-none">
+                    <option value="" disabled>Select Gender</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="non-binary">Non-binary</option>
+                  </select>
+                </div>
               </div>
             </div>
 
-            <div>
-              <label for="address" class="block text-gray-700 font-medium"
-                >Address</label
-              >
-              <textarea
-                id="address"
-                rows="3"
-                [(ngModel)]="address"
-                name="address"
-                class="input"
-                placeholder="123 Main St, Anytown"
-              ></textarea>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- DOB -->
+              <div class="group">
+                <label for="dob"
+                  class="block text-sm font-semibold text-gray-700 mb-2 group-focus-within:text-mahakal-orange transition-colors">
+                  Date of Birth
+                </label>
+                <div class="relative">
+                  <span
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-mahakal-orange transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </span>
+                  <input id="dob" type="date" [(ngModel)]="dob" name="dob"
+                    class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-mahakal-orange focus:ring-4 focus:ring-mahakal-orange/10 transition-all bg-gray-50 focus:bg-white" />
+                </div>
+              </div>
+
+              <!-- Aadhar -->
+              <div class="group">
+                <label for="aadhar"
+                  class="block text-sm font-semibold text-gray-700 mb-2 group-focus-within:text-mahakal-orange transition-colors">
+                  Aadhar Number (Optional)
+                </label>
+                <div class="relative">
+                  <span
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-mahakal-orange transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                    </svg>
+                  </span>
+                  <input id="aadhar" type="text" [(ngModel)]="aadhar" name="aadhar" maxlength="20"
+                    class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-mahakal-orange focus:ring-4 focus:ring-mahakal-orange/10 transition-all bg-gray-50 focus:bg-white"
+                    placeholder="xxxx xxxx xxxx" />
+                </div>
+              </div>
             </div>
 
-            <div class="flex items-center justify-between">
-              <small class="text-gray-500">
-                Fields can be updated later from your profile settings.
-              </small>
-              <div class="flex gap-3">
-                <button
-                  type="button"
-                  (click)="resetForm()"
-                  class="px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-100"
-                >
-                  Reset
-                </button>
-                <button
-                  type="submit"
-                  [disabled]="loading"
-                  class="px-5 py-2 rounded-full text-white bg-indigo-600 hover:bg-indigo-700 flex items-center"
-                >
-                  <svg
-                    *ngIf="loading"
-                    class="animate-spin h-4 w-4 mr-2"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      class="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      stroke-width="4"
-                    ></circle>
-                    <path
-                      class="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                    ></path>
+            <!-- Address -->
+            <div class="group">
+              <label for="address"
+                class="block text-sm font-semibold text-gray-700 mb-2 group-focus-within:text-mahakal-orange transition-colors">
+                Address
+              </label>
+              <div class="relative">
+                <span
+                  class="absolute top-3 left-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-mahakal-orange transition-colors">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  {{ loading ? 'Saving…' : 'Update Profile' }}
-                </button>
+                </span>
+                <textarea id="address" rows="3" [(ngModel)]="address" name="address"
+                  class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-mahakal-orange focus:ring-4 focus:ring-mahakal-orange/10 transition-all bg-gray-50 focus:bg-white resize-none"
+                  placeholder="Enter full address"></textarea>
               </div>
             </div>
+
+            <!-- Buttons -->
+            <div class="flex items-center justify-between pt-6 border-t border-gray-100">
+              <button type="button" (click)="resetForm()"
+                class="px-6 py-3 border border-gray-300 text-gray-600 font-semibold rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-colors">
+                Reset
+              </button>
+
+              <button type="submit" [disabled]="loading"
+                class="px-8 py-3 bg-gradient-mahakal text-white font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed flex items-center items-center gap-2">
+                <svg *ngIf="loading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                  fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+                <span>{{ loading ? 'Saving...' : 'Save Changes' }}</span>
+              </button>
+            </div>
+
           </form>
         </section>
+
       </div>
     </div>
   </ng-template>
