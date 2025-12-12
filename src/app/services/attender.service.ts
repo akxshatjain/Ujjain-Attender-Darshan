@@ -12,7 +12,7 @@ import { AuthService } from './auth.service';
 export class AttenderService {
 
   //  Change IP here only
-  BASE_IP = "http://10.120.10.245:8890/";
+  BASE_IP = "https://mahakaal.inxeoz.com";
   
 
   constructor(

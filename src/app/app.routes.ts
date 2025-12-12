@@ -8,6 +8,7 @@ import { UpdateAttenderProfileComponent } from './update-attender-profile/update
 import { RegistrationComponent } from './registration/registration.component';
 
 export const routes: Routes = [
+ 
   { path: 'login', component: LoginComponent },
   // { path: 'login', component: LoginComponent, canActivate: [LogoutGuard] },
   { path: 'homepage', component: HomepageComponent},
@@ -20,6 +21,11 @@ export const routes: Routes = [
   // { path: 'profile', component: ViewAttenderProfileComponent, canActivate: [AuthGuard] },
   { path: 'updateprofile', component: UpdateAttenderProfileComponent },
   // { path: 'updateprofile', component: UpdateAttenderProfileComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
+  { path: '', component: HomepageComponent },
+  // { path: '', redirectTo: 'homepage', pathMatch: 'full' },
+
+  
+
+
   { path: '**', redirectTo: 'homepage' },
 ];
